@@ -1,0 +1,45 @@
+#cudl {
+    width: 60px;
+    height: 20px;
+}
+
+label {
+    width: 200px;
+}
+
+#kontrola {
+    margin-top: 20px;
+}
+
+#rodcislo,
+#button2 {
+    height: 100%;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
+
+.correctFigure {
+    background-color: #00DD00;
+}
+
+.incorrectFigure {
+    background-color: #FF8686;
+}
+
+#characters {
+    display: flex;
+    flex-direction: row;
+}
+
+#characters div {
+    display: flex;
+    padding: 10px;
+    margin: 3px;
+    border-radius: 3px;
+}
