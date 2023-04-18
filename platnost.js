@@ -75,24 +75,32 @@ validateCharacters(rodCislo)
 
 document.querySelector('#kontrola').addEventListener('submit', (event) => {
     event.preventDefault()
-    checkBirthID()
     let rodCislo = document.querySelector('#rc')
     let rodCisloValue = rodCislo.value
+    checkBirthID(rodCisloValue)
     validateCharacters(rodCisloValue)
 })
 
-const checkBirthID = () => {
-    let rodCislo = document.querySelector('#rc')
-    let rodCisloValue = rodCislo.value
-    let result = true
+let zprava2 = document.querySelector('#zprava2')
+
+let result
+const checkBirthID = (rodCisloValue) => {
+    result = true
+    zprava2.innerHTML = ''
     if (rodCisloValue.length !== 10) {
         console.log('invalidLength')
+        zprava2.innerHTML += 'Délka rodného čísla musí být 10.'
+        zprava2.classList.add('incorrect')
         result = false
     } if (Number.isInteger(Number(rodCisloValue)) === false) {
         console.log('notANumber')
+        zprava2.innerHTML += ' Nejedná se o číslo.'
+        zprava2.classList.add('incorrect')
         result = false
     } if (Number(rodCisloValue) % 11 !== 0) {
         console.log('failedChecksum')
+        zprava2.innerHTML += ' Číslo není dělitelné 11.'
+        zprava2.classList.add('incorrect')
         result = false
     }
     checkFinal(result)
@@ -105,6 +113,7 @@ const checkFinal = (result) => {
         zprava.innerHTML = 'V pořádku.'
         zprava.classList.add('correct')
         zprava.classList.remove('incorrect')
+        zprava2.classList.remove('incorrect')
     } else {
         console.log('Chybné rodné číslo')
         zprava.innerHTML = 'V rodném čísle jsou chyby.'
@@ -113,35 +122,23 @@ const checkFinal = (result) => {
 }
 
 const validateCharacters = (rodCisloValue) => {
-    const resultArray = []
-    let rodCislo = document.querySelector('#rc')
-    rodCisloValue = rodCislo.value
     const rodCisloArray = rodCisloValue.split('')
     console.log(rodCisloArray)
+    document.querySelector('#characters').replaceChildren()
     rodCisloArray.forEach((cislo) => {
-        //resultArray.push({ char: `${cislo}` })
-        //console.log(resultArray)
-
         const divElm = document.createElement('div')
         divElm.innerHTML += cislo
         document.querySelector('#characters').appendChild(divElm)
-
-        if (digits.includes(cislo)) {
-            divElm.classList.add('correctFigure')
-        } else {
-            divElm.classList.add('incorrectFigure')
-        }
-
+        isDigit(cislo, divElm)
     })
 }
 
-
 const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-/*
-const isDigit = (cislo) => {
 
-    if (digits.includes(cislo)) {
+const isDigit = (cislo, divElm) => {
+    if (digits.includes(cislo) && result === true) {
         divElm.classList.add('correctFigure')
+    } else {
+        divElm.classList.add('incorrectFigure')
     }
 }
-*/
