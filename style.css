@@ -11,7 +11,7 @@ label {
     margin-top: 20px;
 }
 
-#rodcislo,
+#rc,
 #button2 {
     height: 100%;
 }
@@ -39,7 +39,7 @@ label {
 
 #characters div {
     display: flex;
-    padding: 10px;
+    padding: 8px;
     margin: 3px;
     border-radius: 3px;
 }

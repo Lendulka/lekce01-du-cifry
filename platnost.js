@@ -82,8 +82,8 @@ document.querySelector('#kontrola').addEventListener('submit', (event) => {
 })
 
 let zprava2 = document.querySelector('#zprava2')
-
 let result
+
 const checkBirthID = (rodCisloValue) => {
     result = true
     zprava2.innerHTML = ''
@@ -136,7 +136,7 @@ const validateCharacters = (rodCisloValue) => {
 const digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 const isDigit = (cislo, divElm) => {
-    if (digits.includes(cislo) && result === true) {
+    if (digits.includes(cislo) && (result === true)) {
         divElm.classList.add('correctFigure')
     } else {
         divElm.classList.add('incorrectFigure')
